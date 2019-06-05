@@ -29,7 +29,7 @@ SAMPLING = {'nearest': gdal.GRIORA_NearestNeighbour,
             'average': gdal.GRIORA_Average,
             'mode': gdal.GRIORA_Mode}
 RE_URL = 'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+'
-TMUX = os.getenv('TERM','').startswith('screen')
+TMUX = os.getenv('TMUX') is not None
 
 def sizefmt(num, suffix='B'):
     for unit in ['', 'K', 'M', 'G', 'T', 'P', 'E', 'Z']:
@@ -58,7 +58,7 @@ def typescale(data, dtype=np.uint8, scale=None):
 def imgcat(data, lines=-1):
     if TMUX:
         if lines == -1:
-            lines = 10
+            lines = 25
         osc = b'\033Ptmux;\033\033]'
         st = b'\a\033\\'
     else:
