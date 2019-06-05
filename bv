@@ -58,7 +58,7 @@ def typescale(data, dtype=np.uint8, scale=None):
 def imgcat(data, lines=-1):
     if TMUX:
         if lines == -1:
-            lines = 25
+            lines = 10
         osc = b'\033Ptmux;\033\033]'
         st = b'\a\033\\'
     else:
@@ -259,7 +259,7 @@ if __name__ == '__main__':
 
     if TMUX:
         # dirty hack to make tmux integration work
-        kwargs['w'] = min(kwargs['w'], 370)
+        kwargs['w'] = min(kwargs['w'], 400)
 
     try:
         if not sys.stdin.isatty() or imgs[0] == '-':
